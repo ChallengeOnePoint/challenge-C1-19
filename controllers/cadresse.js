@@ -4,10 +4,10 @@ var mongoose = require('mongoose');
 var request = require("request")
 var geocoder = require('geocoder');
 // Create endpoint /api/echo for POSTS
-exports.import = function(req, res) {
+exports.import = function(req, resm) {
   // Create a new instance
 
-  req.body.url
+  var url = req.headers.url
   request({
       url: url,
       json: true
@@ -50,11 +50,18 @@ exports.import = function(req, res) {
 
               add.save(function(err) {
                 if (err)
-                  res.send(err);
-                res.json({ message: 'echo added', data: echo });
+                  console.log(err);
               });
             });
           }
+          User.find(function(err, users) {
+            if (err){
+              res.send(err);
+              console.log(err);
+            }
+            console.log(users);
+            res.json(users);
+          });
       }
   })
 };

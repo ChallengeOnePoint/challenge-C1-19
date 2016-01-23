@@ -3,7 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var addc = require('./controllers/cadresse');
-
+var crypto = require('crypto');
 var fs = require('fs');
 // Load data Schemas
 var Add = require('./models/cadresse');
@@ -22,6 +22,8 @@ var server = https.createServer({
     key: privateKey,
     cert: certificate
 }, app);
+// var http = require('http');
+// var server = http.createServer(app);
 
 var credentials = {key: privateKey, cert: certificate};
 // Use body-parser
@@ -29,8 +31,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// Use environment defined port or 3000
-var port = process.env.PORT || 443;
+// Use environment defined port or 3000 443
+var port = process.env.PORT || 3000;
 
 // Create our Express router
 var router = express.Router();
