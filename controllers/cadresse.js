@@ -60,7 +60,7 @@ exports.import = function(req, resm) {
               console.log(err);
             }
             console.log(users);
-            res.json(users);
+            res.json({contactlist:users});
           });
       }
   })
